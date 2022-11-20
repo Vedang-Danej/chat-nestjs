@@ -1,14 +1,11 @@
 import { Resolver, Query, Args, Mutation } from '@nestjs/graphql';
 import { Chat } from 'src/graphql';
-import { MessageGateway } from 'src/message/message.gateway';
+
 import { ChatService } from './chat.service';
 
 @Resolver('chat')
 export class ChatResolvers {
-  constructor(
-    private readonly chatService: ChatService,
-    private readonly messageGateway: MessageGateway,
-  ) {}
+  constructor(private readonly chatService: ChatService) {}
 
   @Query()
   async chats(): Promise<Chat[]> {
